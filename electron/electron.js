@@ -1,8 +1,18 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
-const url = require('url');
 const isDev = require('electron-is-dev'); 
+const dbPath = app.getPath("appData")
+
+
+console.log(dbPath)
+const db = require('./models/index').database
+db(dbPath).then(
+  (e)=>console.log("am in",e)
+).catch(
+  console.info("catch")
+)
+
 
 function createWindow () {
   // Create the browser window.
